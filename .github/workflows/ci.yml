@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
       - name: Install toolchain
         uses: dtolnay/rust-toolchain@master
         with:
@@ -33,7 +33,7 @@ jobs:
   flake-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.6.0
       - uses: cachix/install-nix-action@v22
         with:
           nix_path: nixpkgs=channel:nixos-unstable
@@ -47,7 +47,7 @@ jobs:
   license:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.6.0
       - name: Check License Lines
         uses: kt3k/license_checker@v1.0.6
 
@@ -65,7 +65,7 @@ jobs:
     continue-on-error: ${{ matrix.checks == 'advisories' }}
 
     steps:
-    - uses: actions/checkout@v3.5.3
+    - uses: actions/checkout@v3.6.0
     - name: cargo-deny
       uses: EmbarkStudios/cargo-deny-action@v1
       with:
@@ -78,9 +78,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.6.0
       - name: Install toolchain
-        uses: dtolnay/rust-toolchain@1.70.0
+        uses: dtolnay/rust-toolchain@1.80.0
         with:
           components: rustfmt
       - run: cargo fmt --all -- --check
@@ -92,7 +92,7 @@ jobs:
     needs: check
 
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.6.0
       - name: cargo-doc
         uses: actions-rs/cargo@v1
         with:
@@ -113,7 +113,7 @@ jobs:
           # - nightly
     steps:
       - name: Checkout sources
-        uses: actions/checkout@v3.5.3
+        uses: actions/checkout@v3.6.0
       - name: Install toolchain
         uses: dtolnay/rust-toolchain@master
         with:
@@ -127,9 +127,9 @@ jobs:
     name: clippy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.6.0
       - name: Install toolchain
-        uses: dtolnay/rust-toolchain@1.70.0
+        uses: dtolnay/rust-toolchain@1.80.0
         with:
           components: clippy
       - uses: swatinem/rust-cache@v2
@@ -145,9 +145,9 @@ jobs:
     continue-on-error: true
 
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.6.0
       - name: Install toolchain
-        uses: dtolnay/rust-toolchain@1.70.0
+        uses: dtolnay/rust-toolchain@1.80.0
       - uses: swatinem/rust-cache@v2
       - run: cargo install --locked cargo-outdated
       - run: cargo outdated --root-deps-only --color always
